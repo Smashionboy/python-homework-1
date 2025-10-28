@@ -1,13 +1,15 @@
 import time
 from functools import wraps
+import logging
 
+logging.basicConfig(level=logging.ERROR, format='%(levelname)s: %(message)s')
 
 def timing_decorator(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
-        start_time = time.time()
+        start_time = time.perf_counter()
         result = func(*args, **kwargs)
-        end_time = time.time()
+        end_time = time.perf_counter()
         print(f"Функция '{func.__name__}' выполнена за {end_time - start_time:.6f} секунд")
         return result
     return wrapper
@@ -37,10 +39,10 @@ def add_numbers_from_file(input_path: str = "input.txt", output_path: str = "out
         return result
 
     except FileNotFoundError:
-        print(f"Ошибка: файл {input_path} не найден. Убедитесь, что он существует в папке с программой.")
+        logging.error(f"Ошибка: файл {input_path} не найден. Убедитесь, что он существует в папке с программой.")
         raise
     except ValueError as e:
-        print(f"Ошибка при чтении чисел: {e}")
+        logging.exception(f"Ошибка при чтении чисел: {e}")
         raise
 
 if __name__ == "__main__":

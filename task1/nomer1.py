@@ -8,5 +8,7 @@ def palindrom(stroka: str) -> bool:
         r -= 1
     return True
 
-s = "aboba"
-print(palindrom(s))
+
+if __name__ == "__main__":
+    s = "aboba"
+    print(palindrom(s))

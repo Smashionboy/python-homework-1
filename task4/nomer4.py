@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 class Student:
     def __init__(self, fio: str, age: int, group_number: str, average_grade: float):
         self.fio = fio
@@ -5,7 +7,7 @@ class Student:
         self.group_number = group_number
         self.average_grade = average_grade
 
-    def show_info(self):
+    def show_info(self) -> None:
         print(f"ФИО: {self.fio}, Возраст: {self.age}")
 
     def scholarship(self) -> int:
@@ -41,13 +43,14 @@ class Postgraduate(Student):
             return 0
 
 
-stud = Student("Иванов И.И.", 20, "БСБО-01-22", 4.9)
-aspir = Postgraduate("Петрова А.С.", 24, "АСП-01-22", 5.0, "Нейросети в биоинформатике")
+if __name__ == "__main__":
+    stud = Student("Иванов И.И.", 20, "БСБО-01-22", 4.9)
+    aspir = Postgraduate("Петрова А.С.", 24, "АСП-01-22", 5.0, "Нейросети в биоинформатике")
 
-stud.show_info()
-aspir.show_info()
+    stud.show_info()
+    aspir.show_info()
 
-print("Стипендия студента:", stud.scholarship(), "руб.")
-print("Стипендия аспиранта:", aspir.scholarship(), "руб.")
+    print("Стипендия студента:", stud.scholarship(), "руб.")
+    print("Стипендия аспиранта:", aspir.scholarship(), "руб.")
 
-print(stud.compare_scholarship(aspir))
+    print(stud.compare_scholarship(aspir))
